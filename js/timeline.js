@@ -1,9 +1,11 @@
 $(() => {
+
+  
   // first we need to create a stage
   var stage = new Konva.Stage({
     container: 'container',   // id of container <div>
-    width: 500,
-    height: 500
+    width: 600,
+    height: 1800
   });
 
   // then create layer
@@ -16,9 +18,11 @@ $(() => {
     radius: 70,
     fill: 'red',
     stroke: 'black',
-    strokeWidth: 4
+    strokeWidth: 4,
+    draggable: true
   });
 
+  circle.draggable();
   // add the shape to the layer
   layer.add(circle);
 
