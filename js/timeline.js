@@ -1,11 +1,17 @@
 $(() => {
 
-  
+
   // first we need to create a stage
   var stage = new Konva.Stage({
     container: 'container',   // id of container <div>
-    width: 600,
-    height: 1800
+    width: $(window).width(),
+    height: $(window).height(),
+  });
+
+    
+  $(window).resize(()=>{
+    stage.width($(window).width());
+    stage.height($(window).height());
   });
 
   // then create layer
