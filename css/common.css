@@ -2,3 +2,54 @@
     margin: 0;
     padding: 0;
 }
+
+.clearfix{
+    overflow: hidden;
+    zoom: 1;
+}
+
+.clearfix::after{
+    content: "\20";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+
+body{
+    overflow: hidden;
+    -ms-overflow-style: none;
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+.scroll{
+    overflow: auto;
+}
+
+.scroll::-webkit-scrollbar-track{
+    border-radius: 3px;
+}
+.scroll::-webkit-scrollbar-thumb{
+    border-radius: 3px;
+    background-color: aqua;
+}
+.scroll::-webkit-scrollbar-thumb:window-inactive{
+    
+}
