@@ -27,5 +27,14 @@ export default defineConfig({
 				rewrite: (path) => path.replace('','')
 			}
 		}
+	},
+	build: {
+		rollupOptions: {
+			output: {
+				chunkFileNames: 'static/js/[name].js',
+				entryFileNames: 'static/js/[name].js',
+				assetFileNames: 'static/[ext]/[name].[ext]',
+			}
+		}
 	}
 })
