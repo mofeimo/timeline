@@ -15,12 +15,14 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			'@': fileURLToPath(new URL('./src', import.meta.url))
-		}
+		},
+		extensions:['.mjs','.js','.ts','.jsx','.tsx','.json']
 	},
 	logLevel: 'info',
 	server: {
-		port: 7777,
+		port: 80,
 		cors: true,
+		open: true,
 		proxy: {
 			'^/123': {
 				target: '',
@@ -35,6 +37,7 @@ export default defineConfig({
 				entryFileNames: 'static/js/[name].js',
 				assetFileNames: 'static/[ext]/[name].[ext]',
 			}
-		}
+		},
+		manifest: false,
 	}
 })
