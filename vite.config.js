@@ -38,6 +38,7 @@ export default defineConfig({
 				assetFileNames: 'static/[ext]/[name].[ext]',
 			}
 		},
+		cssCodeSplit: false,
 		manifest: false,
 	}
 })
