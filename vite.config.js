@@ -19,6 +19,7 @@ export default defineConfig({
 		extensions:['.mjs','.js','.ts','.jsx','.tsx','.json']
 	},
 	logLevel: 'info',
+	base: './',
 	server: {
 		port: 80,
 		cors: true,
