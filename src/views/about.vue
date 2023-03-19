@@ -2,5 +2,5 @@
     about
 </template>
 
-<script>
+<script setup>
 </script>

@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    overflow: hidden;
+    -ms-overflow-style: none;
+    ::-webkit-scrollbar{
+        display: none;
+    }
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.clearfix{
+    overflow: hidden;
+    zoom: 1;
+
+    ::after{
+        content: "\20";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.scroll{
+    overflow: auto;
+    ::-webkit-scrollbar-track{
+        border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb{
+        border-radius: 3px;
+        background-color: aqua;
+    }
+    ::-webkit-scrollbar-thumb:window-inactive{
+    
+    }
+}

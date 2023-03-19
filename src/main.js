@@ -9,7 +9,7 @@ import './assets/main.css'
 
 const app = createApp(App)
 
-app.use(VueKonva)
+app.use(VueKonva, { prefix: 'Konva'})
 app.use(router)
 app.use(store)
 
