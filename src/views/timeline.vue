@@ -3,7 +3,7 @@
 		<div class="header fl">
 			不知道放点什么
 		</div>
-		<div class="setting fr">
+		<div class="setting fr" ref="settingref">
 			<span @click="timeline.hidesetting">设置+记录</span>
 		</div>
 		<div class="canvas fl" id="canvas" ref="canvasref">
@@ -15,6 +15,7 @@
 import { reactive, ref, onMounted } from 'vue';
 
 const canvasref = ref(null);
+const settingref = ref(null);
 
 const timeline = reactive({
 	style: {
@@ -26,7 +27,18 @@ const timeline = reactive({
 	},
 	hidesetting(){
 		timeline.style['--setting-width'] ='0px';	
-	}
+	},
+	init(){
+		window.resizeobserver = new ResizeObserver((entries)=>{
+			entries.forEach(entry=>{
+				if(entry.contentBoxSize){
+					const contentBoxSize = Array.isArray(entry.contentBoxSize) ? entry.contentBoxSize[0] : entry.contentBoxSize;
+					console.log(contentBoxSize);
+				}
+			});
+		});
+		window.resizeobserver.observe(settingref.value);
+	},
 });
 const canvas = reactive({
 	stage: null,
@@ -91,6 +103,7 @@ const canvas = reactive({
 	}
 });
 onMounted(() => {
+	timeline.init();
 	canvas.init();
 	canvasref.value.addEventListener('resize',canvas.initcanvas);
 });
