@@ -105,7 +105,7 @@ const canvas = reactive({
 onMounted(() => {
 	timeline.init();
 	canvas.init();
-	canvasref.value.addEventListener('resize',canvas.initcanvas);
+	canvasref.value.addEventListener('resize',canvas.init);
 });
 </script>
 <style lang="scss" scoped>
