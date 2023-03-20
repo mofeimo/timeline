@@ -4,7 +4,7 @@
 			不知道放点什么
 		</div>
 		<div class="setting fr">
-			设置+记录
+			<span @click="timeline.hidesetting">设置+记录</span>
 		</div>
 		<div class="canvas fl" id="canvas" ref="canvasref">
 			<span>您的浏览器不支持canvas</span>
@@ -24,6 +24,9 @@ const timeline = reactive({
 	setting:{
 		eventwidth: 400,
 	},
+	hidesetting(){
+		timeline.style['--setting-width'] ='0px';	
+	}
 });
 const canvas = reactive({
 	stage: null,
@@ -52,20 +55,31 @@ const canvas = reactive({
 		}
 	},
 	initheader(){
-		canvas.header.con = new Konva.Layer();
-		canvas.stage.add(canvas.header.con);
-		canvas.header.bottomline = new Konva.Line({
-			points: [0,canvas.header.height,canvas.stage.getAttr('width'),canvas.header.height],
-			stroke: '#dfdfdf',
-			strokeWidth: 1,
-		});
-		canvas.header.con.add(canvas.header.bottomline);
-		canvas.header.eventline = new Konva.Line({
-			points: [timeline.setting.eventwidth,0,timeline.setting.eventwidth,canvas.header.height],
-			stroke: '#dfdfdf',
-			strokeWidth: 1,
-		});
-		canvas.header.con.add(canvas.header.eventline);
+		let [width, height] = canvas.getsize();
+		if(!canvas.header.con){
+			canvas.header.con = new Konva.Layer();
+			canvas.stage.add(canvas.header.con);
+		}
+		if(canvas.header.bottomline){
+			canvas.header.bottomline.setAttrs({points:[0,canvas.header.height,canvas.stage.getAttr('width'),canvas.header.height]})
+		}else{
+			canvas.header.bottomline = new Konva.Line({
+				points: [0,canvas.header.height,canvas.stage.getAttr('width'),canvas.header.height],
+				stroke: '#dfdfdf',
+				strokeWidth: 1,
+			});
+			canvas.header.con.add(canvas.header.bottomline);
+		}
+		if(canvas.header.eventline){
+			canvas.header.eventline.setAttrs({points:[timeline.setting.eventwidth,0,timeline.setting.eventwidth,canvas.header.height]})
+		}else{
+			canvas.header.eventline = new Konva.Line({
+				points: [timeline.setting.eventwidth,0,timeline.setting.eventwidth,canvas.header.height],
+				stroke: '#dfdfdf',
+				strokeWidth: 1,
+			});
+			canvas.header.con.add(canvas.header.eventline);
+		}
 	},
 	inittime(){
 
@@ -78,7 +92,7 @@ const canvas = reactive({
 });
 onMounted(() => {
 	canvas.init();
-	window.addEventListener('resize',canvas.initcanvas);
+	canvasref.value.addEventListener('resize',canvas.initcanvas);
 });
 </script>
 <style lang="scss" scoped>
